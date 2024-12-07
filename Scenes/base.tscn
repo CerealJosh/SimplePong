@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0drc454886hn"]
+
+[ext_resource type="Script" path="res://Scripts/Base.cs" id="1_xqyrg"]
+[ext_resource type="PackedScene" uid="uid://dcb03fkok27nj" path="res://Scenes/boundaries.tscn" id="3_3ytmc"]
+[ext_resource type="PackedScene" uid="uid://onih3bi5bij0" path="res://Scenes/paddle.tscn" id="3_y7k6j"]
+[ext_resource type="PackedScene" uid="uid://csb7hxv1ojqq" path="res://Scenes/ball.tscn" id="4_f2qgk"]
+[ext_resource type="PackedScene" uid="uid://cmapk1aqry11r" path="res://Scenes/Kill.tscn" id="5_tr270"]
+[ext_resource type="Texture2D" uid="uid://cdm6j8v7qfuth" path="res://Assets/Img/Background.png" id="6_yxl6k"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ghugh"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_majwu"]
+friction = 0.0
+bounce = 1.0
+
+[node name="Base" type="Node2D"]
+script = ExtResource("1_xqyrg")
+
+[node name="Boundaries" parent="." instance=ExtResource("3_3ytmc")]
+position = Vector2(0, -148)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_ghugh")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(3.448, 1)
+zoom = Vector2(2, 2)
+
+[node name="Paddles" type="Node" parent="."]
+
+[node name="Paddle" parent="Paddles" instance=ExtResource("3_y7k6j")]
+z_index = 1
+
+[node name="Paddle2" parent="Paddles" instance=ExtResource("3_y7k6j")]
+position = Vector2(260, 0)
+
+[node name="Ball" parent="." instance=ExtResource("4_f2qgk")]
+z_index = 4
+collision_layer = 3
+collision_mask = 3
+mass = 1.0
+physics_material_override = SubResource("PhysicsMaterial_majwu")
+
+[node name="Timer" type="Timer" parent="Ball"]
+wait_time = 5.0
+
+[node name="Start" type="Timer" parent="Ball"]
+one_shot = true
+
+[node name="Killzone" parent="." instance=ExtResource("5_tr270")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -5
+texture_filter = 1
+position = Vector2(-9.53674e-07, -5.50001)
+scale = Vector2(2.5, 0.917969)
+texture = ExtResource("6_yxl6k")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmapk1aqry11r"]
+
+[ext_resource type="Script" path="res://Scripts/Kill.cs" id="1_ejtlw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqdvr"]
+size = Vector2(27, 224)
+
+[node name="Killzone" type="Area2D"]
+scale = Vector2(1, 1.3)
+script = ExtResource("1_ejtlw")
+
+[node name="Left" type="CollisionShape2D" parent="."]
+position = Vector2(-336, -5)
+shape = SubResource("RectangleShape2D_qqdvr")
+
+[node name="Right" type="CollisionShape2D" parent="."]
+position = Vector2(336.5, -5)
+shape = SubResource("RectangleShape2D_qqdvr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
