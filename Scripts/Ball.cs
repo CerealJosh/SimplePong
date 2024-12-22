@@ -4,7 +4,7 @@ using static Godot.TextServer;
 
 public partial class Ball : RigidBody2D
 {
-    [Export] public int InitialSpeed = -500;
+    [Export] public int InitialSpeed = -400;
     public int ImpulseStrength = 10;
     //public float prevRotation = 0.0f;
     private Timer timer;
@@ -33,11 +33,6 @@ public partial class Ball : RigidBody2D
 
     private void OnTimeOut()
     {
-        var angle = this.Rotation;
-        var angleX = Mathf.Cos(angle);
-        var angleY = Mathf.Sin(angle);
-        Vector2 impulse = new Vector2(angleX, angleY) * ImpulseStrength;
-        //this.ApplyCentralImpulse(impulse);
     }
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
@@ -50,16 +45,14 @@ public partial class Ball : RigidBody2D
 
     private void AdjustAngle()
     {
-        if (Mathf.Abs(LinearVelocity.X) < 50f)
+        if (Mathf.Abs(LinearVelocity.X) < 60f)
         {
             // Adjust the trajectory to ensure sufficient horizontal movement
             float signY = Mathf.Sign(LinearVelocity.Y);
             float randomAngle = (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4) * signY;
             float angle = Mathf.Asin(50f / InitialSpeed) * signY; // Calculate a valid angle
-            //LinearVelocity = new Vector2(
-            //    Mathf.Cos(randomAngle) * InitialSpeed,
-            //    Mathf.Sin(randomAngle) * InitialSpeed
-            //);
+            GD.Print($"Original: {LinearVelocity}");
+            LinearVelocity = new Vector2(LinearVelocity.X + 30 * signY, LinearVelocity.Y);
 
             GD.Print($"Adjusted to avoid near-vertical: {LinearVelocity}");
         }
