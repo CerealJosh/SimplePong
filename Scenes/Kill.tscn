@@ -10,11 +10,11 @@ scale = Vector2(1, 1.3)
 script = ExtResource("1_ejtlw")
 
 [node name="Left" type="CollisionShape2D" parent="."]
-position = Vector2(-336, -5)
+position = Vector2(-206, -5)
 shape = SubResource("RectangleShape2D_qqdvr")
 
 [node name="Right" type="CollisionShape2D" parent="."]
-position = Vector2(336.5, -5)
+position = Vector2(206, -5)
 shape = SubResource("RectangleShape2D_qqdvr")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
