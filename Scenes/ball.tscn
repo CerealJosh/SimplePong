@@ -10,12 +10,14 @@ radius = 8.0
 mass = 0.001
 gravity_scale = 0.0
 script = ExtResource("1_adddh")
+InitialSpeed = -200
+Variation = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_cto0i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="ballshape" type="CollisionShape2D" parent="."]
 scale = Vector2(0.4, 0.4)
 shape = SubResource("CircleShape2D_adtmp")

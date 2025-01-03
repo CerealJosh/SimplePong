@@ -6,6 +6,7 @@ public partial class Ball : RigidBody2D
 {
     [Export] public int InitialSpeed = -400;
     public int ImpulseStrength = 10;
+    [Export] public int Variation = 10;
     //public float prevRotation = 0.0f;
     private Timer timer;
     private Timer startTimer;
@@ -14,10 +15,14 @@ public partial class Ball : RigidBody2D
     private float MaxAngle = Mathf.Pi - Mathf.DegToRad(165f); // 165 degrees
     private bool started = false;
 
+    Vector2 InitialPosition = new();
+    private bool reset = false;
+
     public override void _Ready()
     {
         timer = GetNode<Timer>("Timer");
         startTimer = GetNode<Timer>("Start");
+        InitialPosition = Position;
         startTimer.Timeout += Start;
         timer.Timeout += OnTimeOut;
         timer.Start();
@@ -33,6 +38,9 @@ public partial class Ball : RigidBody2D
 
     private void OnTimeOut()
     {
+        var xDirection = MathF.Sign(LinearVelocity.X);
+        //LinearVelocity = new Vector2(LinearVelocity.X + (xDirection *Variation), LinearVelocity.Y);
+        ResetBall();
     }
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
@@ -41,6 +49,10 @@ public partial class Ball : RigidBody2D
             LinearVelocity = LinearVelocity.Normalized() * Mathf.Abs(InitialSpeed);
             AdjustAngle();
         }
+        //if (reset)
+        //{
+        //   //MoveAndCollide(Vector2());
+        //}
     }
 
     private void AdjustAngle()
@@ -51,10 +63,13 @@ public partial class Ball : RigidBody2D
             float signY = Mathf.Sign(LinearVelocity.Y);
             float randomAngle = (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4) * signY;
             float angle = Mathf.Asin(50f / InitialSpeed) * signY; // Calculate a valid angle
-            GD.Print($"Original: {LinearVelocity}");
-            LinearVelocity = new Vector2(LinearVelocity.X + 30 * signY, LinearVelocity.Y);
 
-            GD.Print($"Adjusted to avoid near-vertical: {LinearVelocity}");
+            LinearVelocity = new Vector2(LinearVelocity.X + 30 * signY, LinearVelocity.Y);
         }
+    }
+
+    public void ResetBall()
+    {
+        reset = true;
     }
 }
