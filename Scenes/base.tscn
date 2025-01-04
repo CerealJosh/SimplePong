@@ -58,7 +58,13 @@ wait_time = 5.0
 [node name="Start" type="Timer" parent="Ball"]
 one_shot = true
 
-[node name="Killzone" parent="." instance=ExtResource("5_tr270")]
+[node name="Killzone" type="Node" parent="."]
+
+[node name="Left" parent="Killzone" instance=ExtResource("5_tr270")]
+position = Vector2(0, 2)
+
+[node name="Right" parent="Killzone" instance=ExtResource("5_tr270")]
+position = Vector2(412, 2)
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -5
@@ -76,8 +82,7 @@ offset_left = -36.0
 offset_top = -91.0
 offset_right = 4.0
 offset_bottom = -68.0
-text = "0
-"
+text = "0"
 label_settings = SubResource("LabelSettings_prxyo")
 justification_flags = 162
 

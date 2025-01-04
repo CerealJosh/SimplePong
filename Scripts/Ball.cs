@@ -40,7 +40,6 @@ public partial class Ball : RigidBody2D
     {
         var xDirection = MathF.Sign(LinearVelocity.X);
         //LinearVelocity = new Vector2(LinearVelocity.X + (xDirection *Variation), LinearVelocity.Y);
-        ResetBall();
     }
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
@@ -49,10 +48,13 @@ public partial class Ball : RigidBody2D
             LinearVelocity = LinearVelocity.Normalized() * Mathf.Abs(InitialSpeed);
             AdjustAngle();
         }
-        //if (reset)
-        //{
-        //   //MoveAndCollide(Vector2());
-        //}
+        if (reset)
+        {
+            LinearVelocity = Vector2.Zero;
+            this.Position = InitialPosition;
+            reset = false;
+            Start();
+        }
     }
 
     private void AdjustAngle()
@@ -70,6 +72,7 @@ public partial class Ball : RigidBody2D
 
     public void ResetBall()
     {
+        started = false;
         reset = true;
     }
 }
