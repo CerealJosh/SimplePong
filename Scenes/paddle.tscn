@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://onih3bi5bij0"]
+[gd_scene load_steps=4 format=3 uid="uid://onih3bi5bij0"]
 
-[ext_resource type="Script" path="res://Scripts/Paddle.cs" id="1_dd4vy"]
 [ext_resource type="Texture2D" uid="uid://bup7y7chreq4d" path="res://Assets/Img/Paddle.png" id="1_uaavd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3jp6x"]
@@ -17,7 +16,6 @@ scale = Vector2(0.8, 0.8)
 collision_layer = 3
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_3jp6x")
-script = ExtResource("1_dd4vy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.57079

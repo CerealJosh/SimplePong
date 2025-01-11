@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0drc454886hn"]
+[gd_scene load_steps=15 format=3 uid="uid://c0drc454886hn"]
 
 [ext_resource type="Script" path="res://Scripts/Base.cs" id="1_xqyrg"]
 [ext_resource type="PackedScene" uid="uid://dcb03fkok27nj" path="res://Scenes/boundaries.tscn" id="3_3ytmc"]
 [ext_resource type="PackedScene" uid="uid://onih3bi5bij0" path="res://Scenes/paddle.tscn" id="3_y7k6j"]
+[ext_resource type="Script" path="res://Scripts/Paddle.cs" id="4_2pxrh"]
 [ext_resource type="PackedScene" uid="uid://csb7hxv1ojqq" path="res://Scenes/ball.tscn" id="4_f2qgk"]
+[ext_resource type="Script" path="res://Scripts/AIPaddle.cs" id="5_gak78"]
 [ext_resource type="PackedScene" uid="uid://cmapk1aqry11r" path="res://Scenes/Kill.tscn" id="5_tr270"]
 [ext_resource type="Texture2D" uid="uid://cdm6j8v7qfuth" path="res://Assets/Img/Background.png" id="6_yxl6k"]
 [ext_resource type="FontFile" uid="uid://cqhw4pw3wf31f" path="res://Assets/fonts/PixelOperator8.ttf" id="7_5fkl6"]
@@ -41,9 +43,11 @@ zoom = Vector2(3, 3)
 [node name="Paddle" parent="Paddles" instance=ExtResource("3_y7k6j")]
 z_index = 1
 position = Vector2(-163, 0)
+script = ExtResource("4_2pxrh")
 
 [node name="Paddle2" parent="Paddles" instance=ExtResource("3_y7k6j")]
-position = Vector2(163, 0)
+position = Vector2(163, 2)
+script = ExtResource("5_gak78")
 
 [node name="Ball" parent="." instance=ExtResource("4_f2qgk")]
 z_index = 4
@@ -51,6 +55,8 @@ collision_layer = 3
 collision_mask = 3
 mass = 1.0
 physics_material_override = SubResource("PhysicsMaterial_majwu")
+InitialSpeed = -300
+Variation = 20
 
 [node name="Timer" type="Timer" parent="Ball"]
 wait_time = 5.0

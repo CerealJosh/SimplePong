@@ -12,7 +12,6 @@ public partial class Kill : Area2D
         {
             ball.ResetBall();
         }
-        
     }
 
     private void increaseScore()

@@ -4,10 +4,9 @@ using static Godot.TextServer;
 
 public partial class Ball : RigidBody2D
 {
-    [Export] public int InitialSpeed = -400;
-    public int ImpulseStrength = 10;
+    [Export] public int InitialSpeed = -7000;
     [Export] public int Variation = 10;
-    //public float prevRotation = 0.0f;
+
     private Timer timer;
     private Timer startTimer;
 
@@ -30,7 +29,7 @@ public partial class Ball : RigidBody2D
     }
     public void Start()
     {
-        float randomAngle = (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4);
+        float randomAngle = (float)GD.RandRange(-Mathf.Pi, Mathf.Pi);
         Vector2 direction = new Vector2(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle)).Normalized();
         LinearVelocity = direction * InitialSpeed;
         started = true;
@@ -39,7 +38,20 @@ public partial class Ball : RigidBody2D
     private void OnTimeOut()
     {
         var xDirection = MathF.Sign(LinearVelocity.X);
-        //LinearVelocity = new Vector2(LinearVelocity.X + (xDirection *Variation), LinearVelocity.Y);
+        LinearVelocity += new Vector2(LinearVelocity.X + (xDirection * Variation), LinearVelocity.Y);
+        if (InitialSpeed <= 600)
+        {
+            InitialSpeed -= 10;
+            GD.Print(InitialSpeed);
+        }
+    }
+    private void _on_body_entered(Node2D body)
+    {
+        if (InitialSpeed <= 600)
+        {
+            InitialSpeed -= 10;
+            GD.Print(InitialSpeed);
+        }
     }
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
@@ -54,6 +66,7 @@ public partial class Ball : RigidBody2D
             this.Position = InitialPosition;
             reset = false;
             Start();
+            timer.Start();
         }
     }
 
@@ -66,7 +79,7 @@ public partial class Ball : RigidBody2D
             float randomAngle = (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4) * signY;
             float angle = Mathf.Asin(50f / InitialSpeed) * signY; // Calculate a valid angle
 
-            LinearVelocity = new Vector2(LinearVelocity.X + 30 * signY, LinearVelocity.Y);
+            LinearVelocity = new Vector2(LinearVelocity.X + 10 * signY, LinearVelocity.Y);
         }
     }
 
@@ -74,5 +87,7 @@ public partial class Ball : RigidBody2D
     {
         started = false;
         reset = true;
+        InitialSpeed = -300;
+        timer.Stop();
     }
 }
