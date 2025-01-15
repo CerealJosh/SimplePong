@@ -82,6 +82,7 @@ alignment = 1
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer/ButtonList"]
 texture_filter = 1
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.00115531, 0.0763371, 0.423531, 1)
@@ -92,6 +93,7 @@ text = "Play"
 
 [node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/ButtonList"]
 texture_filter = 1
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.00115531, 0.0763371, 0.423531, 1)
@@ -103,6 +105,7 @@ text = "Settings"
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer/ButtonList"]
 texture_filter = 1
 texture_repeat = 1
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.00115531, 0.0763371, 0.423531, 1)

@@ -17,15 +17,17 @@ public partial class AIPaddle : StaticBody2D
     public override void _PhysicsProcess(double delta)
     {
         var ball = Owner.GetNode<RigidBody2D>("Ball");
-
-        if (ball.Position.X > 1 && ball.LinearVelocity.X > 0)
+        if (ball != null)
         {
-            float directionY = ball.Position.Y > Position.Y ? 1 : -1;
-            if (Mathf.Abs(ball.Position.Y - Position.Y) > reactionDelay) // Add a threshold
+            if (ball.Position.X > 1 && ball.LinearVelocity.X > 0)
             {
-                Position += new Vector2(0, directionY * Speed * (float)delta);
-                // Clamp the paddle within bounds
-                Position = new Vector2(Mathf.Clamp(Position.X, xPosition, xPosition), Mathf.Clamp(Position.Y, PaddleBounds.X, PaddleBounds.Y));
+                float directionY = ball.Position.Y > Position.Y ? 1 : -1;
+                if (Mathf.Abs(ball.Position.Y - Position.Y) > reactionDelay) // Add a threshold
+                {
+                    Position += new Vector2(0, directionY * Speed * (float)delta);
+                    // Clamp the paddle within bounds
+                    Position = new Vector2(Mathf.Clamp(Position.X, xPosition, xPosition), Mathf.Clamp(Position.Y, PaddleBounds.X, PaddleBounds.Y));
+                }
             }
         }
     }

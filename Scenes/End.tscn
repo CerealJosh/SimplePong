@@ -43,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_wgu0f")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Box" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -57,22 +57,23 @@ offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="List" type="VBoxContainer" parent="Box"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 60
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Box/List"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 text = "You win!"
 label_settings = SubResource("LabelSettings_geefa")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Box/List"]
 layout_mode = 2
 
-[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Restart" type="Button" parent="Box/List/VBoxContainer"]
 texture_filter = 1
 texture_repeat = 1
 custom_minimum_size = Vector2(200, 40)
@@ -87,7 +88,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6ubva")
 text = "Restart
 "
 
-[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Back" type="Button" parent="Box/List/VBoxContainer"]
 texture_filter = 1
 texture_repeat = 1
 custom_minimum_size = Vector2(200, 40)
@@ -101,5 +102,5 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ubva")
 text = "Back"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Box/List/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Box/List/VBoxContainer/Back" to="." method="_on_back_pressed"]
