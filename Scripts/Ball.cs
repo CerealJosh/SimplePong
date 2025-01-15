@@ -5,7 +5,7 @@ using static Godot.TextServer;
 public partial class Ball : RigidBody2D
 {
     [Export] public int InitialSpeed = -7000;
-    [Export] public int Variation = 10;
+    [Export] public int Variation = 20;
 
     private Timer timer;
     private Timer startTimer;

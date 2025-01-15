@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0drc454886hn"]
+[gd_scene load_steps=16 format=3 uid="uid://c0drc454886hn"]
 
 [ext_resource type="Script" path="res://Scripts/Base.cs" id="1_xqyrg"]
 [ext_resource type="PackedScene" uid="uid://dcb03fkok27nj" path="res://Scenes/boundaries.tscn" id="3_3ytmc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cdm6j8v7qfuth" path="res://Assets/Img/Background.png" id="6_yxl6k"]
 [ext_resource type="FontFile" uid="uid://cqhw4pw3wf31f" path="res://Assets/fonts/PixelOperator8.ttf" id="7_5fkl6"]
 [ext_resource type="Script" path="res://Scripts/Score.cs" id="7_uc6it"]
+[ext_resource type="PackedScene" uid="uid://dfseurj53r3rb" path="res://Scenes/End.tscn" id="11_6rq0o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ghugh"]
 friction = 0.0
@@ -101,3 +102,6 @@ offset_bottom = -67.0
 text = "0
 "
 label_settings = SubResource("LabelSettings_ldtnq")
+
+[node name="End" parent="." instance=ExtResource("11_6rq0o")]
+visible = false

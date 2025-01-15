@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfseurj53r3rb"]
+
+[ext_resource type="Script" path="res://Scripts/End.cs" id="1_soro7"]
+[ext_resource type="Texture2D" uid="uid://cdm6j8v7qfuth" path="res://Assets/Img/Background.png" id="2_gd06d"]
+[ext_resource type="FontFile" uid="uid://cqhw4pw3wf31f" path="res://Assets/fonts/PixelOperator8.ttf" id="3_6noaw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wgu0f"]
+texture = ExtResource("2_gd06d")
+modulate_color = Color(0.597176, 0.597176, 0.597176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_geefa"]
+font = ExtResource("3_6noaw")
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ubva"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.197937, 0.197937, 0.197937, 0.6)
+shadow_size = 6
+shadow_offset = Vector2(0, 2)
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_soro7")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wgu0f")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -465.0
+offset_top = -24.0
+offset_right = 465.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "You win!"
+label_settings = SubResource("LabelSettings_geefa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.14
+theme_override_colors/font_color = Color(0.00115531, 0.0763371, 0.423531, 1)
+theme_override_fonts/font = ExtResource("3_6noaw")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ubva")
+text = "Restart
+"
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.14
+theme_override_colors/font_color = Color(0.00115531, 0.0763371, 0.423531, 1)
+theme_override_fonts/font = ExtResource("3_6noaw")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ubva")
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
