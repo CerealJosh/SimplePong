@@ -39,19 +39,15 @@ public partial class Ball : RigidBody2D
     {
         var xDirection = MathF.Sign(LinearVelocity.X);
         LinearVelocity += new Vector2(LinearVelocity.X + (xDirection * Variation), LinearVelocity.Y);
-        if (InitialSpeed <= 600)
-        {
-            InitialSpeed -= 10;
-            GD.Print(InitialSpeed);
-        }
     }
-    public void _on_ball_body_exited(Node body)
+    public void _on_body_exited(Node body)
     {
-        GD.Print(body.Name+ " Here!");
+        var player = GetNode<AudioStreamPlayer2D>("Bounce");
+        if (player != null)
+            player.Play();
         if (InitialSpeed <= 600)
         {
-            InitialSpeed -= 10;
-            GD.Print(InitialSpeed);
+            InitialSpeed -= 3;
         }
     }
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0drc454886hn"]
+[gd_scene load_steps=18 format=3 uid="uid://c0drc454886hn"]
 
 [ext_resource type="Script" path="res://Scripts/Base.cs" id="1_xqyrg"]
 [ext_resource type="PackedScene" uid="uid://dcb03fkok27nj" path="res://Scenes/boundaries.tscn" id="3_3ytmc"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cmapk1aqry11r" path="res://Scenes/Kill.tscn" id="5_tr270"]
 [ext_resource type="Texture2D" uid="uid://cdm6j8v7qfuth" path="res://Assets/Img/Background.png" id="6_yxl6k"]
 [ext_resource type="FontFile" uid="uid://cqhw4pw3wf31f" path="res://Assets/fonts/PixelOperator8.ttf" id="7_5fkl6"]
+[ext_resource type="AudioStream" uid="uid://ba5xqwe7kddkr" path="res://Assets/SFX/attack_b.wav" id="7_o0vi6"]
 [ext_resource type="Script" path="res://Scripts/Score.cs" id="7_uc6it"]
 [ext_resource type="PackedScene" uid="uid://dfseurj53r3rb" path="res://Scenes/End.tscn" id="11_6rq0o"]
 [ext_resource type="AudioStream" uid="uid://dml8wyvbneaf0" path="res://Assets/Audio/the_wall_loopable.ogg" id="12_613pp"]
@@ -66,6 +67,10 @@ wait_time = 5.0
 [node name="Start" type="Timer" parent="Ball"]
 one_shot = true
 
+[node name="Bounce" type="AudioStreamPlayer2D" parent="Ball"]
+stream = ExtResource("7_o0vi6")
+volume_db = -10.0
+
 [node name="Killzone" type="Node" parent="."]
 
 [node name="Left" parent="Killzone" instance=ExtResource("5_tr270")]
@@ -109,7 +114,7 @@ visible = false
 
 [node name="Player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_613pp")
-volume_db = -6.0
+volume_db = -10.0
 autoplay = true
 parameters/looping = true
 

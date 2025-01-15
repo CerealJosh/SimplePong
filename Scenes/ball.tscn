@@ -9,6 +9,8 @@ radius = 8.0
 [node name="Ball" type="RigidBody2D"]
 mass = 0.001
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 9999999
 script = ExtResource("1_adddh")
 InitialSpeed = -200
 Variation = 30
