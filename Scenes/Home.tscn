@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://yon2syrhno07"]
+[gd_scene load_steps=8 format=3 uid="uid://yon2syrhno07"]
 
 [ext_resource type="FontFile" uid="uid://cqhw4pw3wf31f" path="res://Assets/fonts/PixelOperator8.ttf" id="1_2gq31"]
 [ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_5u8im"]
 [ext_resource type="Texture2D" uid="uid://cdm6j8v7qfuth" path="res://Assets/Img/Background.png" id="1_ofee4"]
+[ext_resource type="AudioStream" uid="uid://dml8wyvbneaf0" path="res://Assets/Audio/the_wall_loopable.ogg" id="4_rkx4e"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sj2q5"]
 texture = ExtResource("1_ofee4")
@@ -113,6 +114,12 @@ theme_override_fonts/font = ExtResource("1_2gq31")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_fnon5")
 text = "Exit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rkx4e")
+volume_db = -6.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonList/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonList/Settings" to="." method="_on_settings_pressed"]

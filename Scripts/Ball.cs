@@ -45,8 +45,9 @@ public partial class Ball : RigidBody2D
             GD.Print(InitialSpeed);
         }
     }
-    private void _on_body_entered(Node2D body)
+    public void _on_ball_body_exited(Node body)
     {
+        GD.Print(body.Name+ " Here!");
         if (InitialSpeed <= 600)
         {
             InitialSpeed -= 10;
