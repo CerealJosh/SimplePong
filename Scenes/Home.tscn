@@ -1,14 +1,116 @@
-[gd_scene format=3 uid="uid://yon2syrhno07"]
+[gd_scene load_steps=7 format=3 uid="uid://yon2syrhno07"]
 
-[node name="Control" type="Control"]
+[ext_resource type="FontFile" uid="uid://cqhw4pw3wf31f" path="res://Assets/fonts/PixelOperator8.ttf" id="1_2gq31"]
+[ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_5u8im"]
+[ext_resource type="Texture2D" uid="uid://cdm6j8v7qfuth" path="res://Assets/Img/Background.png" id="1_ofee4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sj2q5"]
+texture = ExtResource("1_ofee4")
+modulate_color = Color(0.597176, 0.597176, 0.597176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_twi8s"]
+font = ExtResource("1_2gq31")
+font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnon5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.197937, 0.197937, 0.197937, 0.6)
+shadow_size = 6
+shadow_offset = Vector2(0, 2)
+
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_5u8im")
 
-[node name="Home" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 571.0
-offset_bottom = 335.0
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sj2q5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -52.0
+offset_right = 115.5
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.44)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Ultra Pong
+"
+label_settings = SubResource("LabelSettings_twi8s")
+
+[node name="ButtonList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer/ButtonList"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.00115531, 0.0763371, 0.423531, 1)
+theme_override_fonts/font = ExtResource("1_2gq31")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_fnon5")
+text = "Play"
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/ButtonList"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.00115531, 0.0763371, 0.423531, 1)
+theme_override_fonts/font = ExtResource("1_2gq31")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_fnon5")
+text = "Settings"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer/ButtonList"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.00115531, 0.0763371, 0.423531, 1)
+theme_override_fonts/font = ExtResource("1_2gq31")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_fnon5")
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonList/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonList/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonList/Exit" to="." method="_on_exit_pressed"]
